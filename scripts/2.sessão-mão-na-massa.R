@@ -17,28 +17,62 @@ dic_mh <- read_excel("dic/dic_mtl.xlsx")
 dic_senna <- read_excel("dic/nomes_facetas_socioemocional.xlsx")
 
 # Sessão mão na massa!
-# Por gênero
-# Quantos alunos tem tido dificuldade em nível alto para conseguir se concentrar naquilo que fazem?
+
+# Meninos e meninas estão apresentando as mesmas dificuldades em relação a sua saúde mental?
+
+# Quantos alunos tem tido dificuldade em nível muito alto para conseguir se concentrar naquilo que fazem?
 bd_mh_fake %>% 
-  group_by(sexo) %>% 
-  frq(Mtl_Hth_01) # Mtl_Hth_01	Você tem conseguido se concentrar naquilo que faz? 
+  
+## Resposta:
 
 # Quantos estudantes se sentem totalmente esgotados e sob pressão?
 bd_mh_fake %>% 
-  group_by(sexo) %>% 
-  frq(Mtl_Hth_05) # Você tem se sentido esgotado e sob pressão?
+  
+## Resposta:
 
 # Quantos alunos costumam perder totalmente o sono por conta das suas preocupações?
 bd_mh_fake %>% 
-  group_by(sexo) %>% 
-  frq(Mtl_Hth_02) # Você tem perdido o sono frequente por causa de suas preocupações? 
+  
+## Resposta:
 
 # Quantos alunos relataram que perderam totalmente a confiança em si?
 bd_mh_fake %>% 
-  group_by(sexo) %>% 
-  frq(Mtl_Hth_10) # Mtl_Hth_10	Você tem perdido a confiança em si mesmo?* #13.5%
+  
+## Resposta:
 
 # Quantos alunos se sentem totalmente infelizes e deprimidos?
 bd_mh_fake %>% 
-  group_by(sexo) %>% 
-  frq(Mtl_Hth_09) # Mtl_Hth_09	Você tem se sentido infeliz e deprimido?* #11.60%
+  
+## Resposta:
+
+# Como está o desenvolvimento socioemocional de meninos e meninas nas competências relacionadas a saúde mental?
+
+# Autoconfiança
+bd_mh_fake %>% 
+  
+## Resposta:
+
+# Confiança
+bd_mh_fake %>% 
+  
+## Resposta:
+
+# Determinação
+bd_mh_fake %>% 
+  
+## Resposta:
+
+# Foco
+bd_mh_fake %>% 
+  
+## Resposta:
+  
+# Entusiasmo
+bd_mh_fake %>% 
+  
+## Resposta:
+  
+# Tolerância ao estresse
+bd_mh_fake %>% 
+
+## Resposta:

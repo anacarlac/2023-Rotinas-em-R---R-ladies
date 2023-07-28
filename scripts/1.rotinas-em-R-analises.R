@@ -10,6 +10,9 @@ library(corrplot)
 library(lavaan)
 library(PROscorerTools)
 library(sjPlot)
+library(readxl)
+library(DT)
+library(ggthemes)
 
 # Carregar o banco de dados limpo e dicionário
 bd_mh_fake <- readRDS("data/bd_mh_fake.RDS")
@@ -148,7 +151,7 @@ v_mh1 <- bd_mh_fake %>%
   dplyr::select(Mtl_Hth_01:Mtl_Hth_12) %>%
   colnames()
 
-pearson_cor <- cor(bd_mh_fake[,v_mh], 
+pearson_cor <- cor(bd_mh_fake[,v_mh1], 
                    use="pairwise.complete.obs")
 
 corrplot::corrplot(pearson_cor, method="color", 
@@ -157,7 +160,7 @@ corrplot::corrplot(pearson_cor, method="color",
          tl.col="black", tl.srt=45,
          diag=TRUE)
 
-poly_cor <- qgraph::cor_auto(bd_mh_fake, select=v_mh)
+poly_cor <- qgraph::cor_auto(bd_mh_fake, select=v_mh1)
 
 corrplot::corrplot(poly_cor, method="color", 
          number.cex = 0.6, 
@@ -170,7 +173,7 @@ efa_bfi <- lavaan::efa(
   bd_mh_fake, 
   nfactors = 1, 
   rotation = "oblimin", 
-  ov.names= v_mh, 
+  ov.names= v_mh1, 
   ordered=TRUE
 )
 
@@ -261,6 +264,21 @@ corr_senna_mh <- corr.test(x = bd_mh_fake[ ,v_socioemo], y = bd_mh_fake$mh_pomps
 
 # Visualizar as correlações
 print(corr_senna_mh)
+
+# Visualizar correlação com gráficos
+bd_mh_fake %>% 
+  ggplot(aes(x=mh_pompscore, y=LDep_9)) + 
+    geom_point(color = "steelblue", alpha = 0.2) +
+    xlim(0,85) +
+    ylim(0, 8) +
+    theme_hc()
+
+bd_mh_fake %>% 
+  ggplot(aes(x=mh_pompscore, y=Tru_9)) + 
+  geom_point(color = "#FC4E07", alpha = 0.2) +
+  xlim(0,85) +
+  ylim(0, 10) +
+  theme_hc()
 
 # Regressão linear múltipla
 # Criar um modelo de regressão com saúde mental como DV (Y) e conjunto de competências socioemocionais como IV (X)
